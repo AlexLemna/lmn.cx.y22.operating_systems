@@ -6,11 +6,15 @@ name = "lmn.cx.y22.operating_systems"
 requires-python = ">= 3.11"
 dynamic = ["version"]
 classifiers = [
-    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved",
+    "License :: OSI Approved :: Zero-Clause BSD (0BSD)",
     "License :: OSI Approved :: Apache Software License",
     "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
 ]
 
 [project.optional-dependencies]

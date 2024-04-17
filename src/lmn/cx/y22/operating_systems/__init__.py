@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2024 Alex Lemna
-# SPDX-License-Identifier: MIT OR Apache-2.0 OR CC0-1.0
+# SPDX-License-Identifier: 0BSD OR MIT OR Apache-2.0
 from ._operating_systems import OS, OperatingSystem, __version__
 
 __all__ = ["OperatingSystem", "OS"]
