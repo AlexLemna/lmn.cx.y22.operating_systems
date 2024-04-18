@@ -40,7 +40,7 @@ class OS(EnumType, OperatingSystem):
     FREEBSD: Final = OperatingSystem("FreeBSD", unix_like=True)
     iOS: Final = OperatingSystem("iOS")
     LINUX: Final = OperatingSystem("Linux", unix_like=True)
-    MACOS: Final = OperatingSystem("macOS", unix_like=True, xdg=False)
+    MAC: Final = OperatingSystem("macOS", unix_like=True, xdg=False)
     NETBSD: Final = OperatingSystem("NetBSD", unix_like=True)
     OPENBSD: Final = OperatingSystem("OpenBSD", unix_like=True)
     UNKNOWN: Final = OperatingSystem("UNKNOWN")
