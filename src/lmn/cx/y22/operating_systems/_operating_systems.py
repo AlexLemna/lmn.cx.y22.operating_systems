@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from enum import EnumType
 from typing import Any, Final
 
-__all__ = ["OperatingSystem", "OS"]
+__all__ = ["determine_os", "OperatingSystem", "OS"]
 try:
     __version__ = importlib.metadata.version("lmn.cx.y22.operating_systems")
 except importlib.metadata.PackageNotFoundError:
@@ -45,3 +45,36 @@ class OS(EnumType, OperatingSystem):
     OPENBSD: Final = OperatingSystem("OpenBSD", unix_like=True)
     UNKNOWN: Final = OperatingSystem("UNKNOWN")
     WINDOWS: Final = OperatingSystem("Windows")
+
+
+def determine_os() -> OperatingSystem:
+    try:
+        from sys import getandroidapilevel  # fmt: skip # type: ignore
+        return OS.ANDROID
+    except ImportError:
+        import sys
+
+    if sys.platform.startswith("freebsd"):
+        return OS.FREEBSD
+
+    if sys.platform == "ios":
+        # requires Python 3.13
+        #   see: https://peps.python.org/pep-0730/#platform-identification
+        return OS.iOS
+
+    if sys.platform == "linux":
+        return OS.LINUX
+
+    if sys.platform == "darwin":
+        return OS.MAC
+
+    if sys.platform.startswith("netbsd"):
+        return OS.NETBSD
+
+    if sys.platform.startswith("openbsd"):
+        return OS.OPENBSD
+
+    if sys.platform == "win32":
+        return OS.WINDOWS
+
+    return OS.UNKNOWN
