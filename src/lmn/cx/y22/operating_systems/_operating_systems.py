@@ -69,11 +69,13 @@ class OS(OperatingSystem, Enum):
 
 
 def determine_os() -> OS:
+    # fmt: off
     try:
-        from sys import getandroidapilevel  # fmt: skip # type: ignore
+        from sys import getandroidapilevel  # type: ignore
         return OS.ANDROID
     except ImportError:
         import sys
+    # fmt: on
 
     if sys.platform.startswith("freebsd"):
         return OS.FREEBSD
