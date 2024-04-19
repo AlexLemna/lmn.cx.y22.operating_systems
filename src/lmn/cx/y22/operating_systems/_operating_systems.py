@@ -5,7 +5,7 @@
 
 import importlib.metadata
 from dataclasses import dataclass
-from enum import EnumType
+from enum import Enum
 from typing import Any, Final
 
 __all__ = ["determine_os", "OperatingSystem", "OS"]
@@ -15,9 +15,13 @@ except importlib.metadata.PackageNotFoundError:
     __version__ = "UNKNOWN"
 
 
-class OperatingSystemMeta(type):
-    def __call__(self, *args: Any, **kwds: Any) -> Any:
+@dataclass(frozen=True, init=False)
+class OperatingSystem:
+    os_name: str
+    unix_like: bool
+    xdg: bool
 
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
         if (
             "xdg" not in kwds.keys()
             and "unix_like" in kwds.keys()
@@ -25,17 +29,30 @@ class OperatingSystemMeta(type):
         ):
             kwds["xdg"] = True
 
-        return super().__call__(*args, **kwds)
+        return self.__init__(*args, **kwds)
+
+    def __init__(
+        self,
+        name_or_os: "str | OperatingSystem",
+        unix_like: bool = False,
+        xdg: bool = False,
+    ) -> None:
+        # if "name_or_os" is a string, use it as the name
+        if isinstance(name_or_os, OperatingSystem):
+            _os = name_or_os
+            object.__setattr__(self, "os_name", _os.os_name)
+            object.__setattr__(self, "unix_like", _os.unix_like)
+            object.__setattr__(self, "xdg", _os.xdg)
+
+        # Otherwise, assume it's a string
+        else:
+            os_name = name_or_os
+            object.__setattr__(self, "os_name", os_name)
+            object.__setattr__(self, "unix_like", unix_like)
+            object.__setattr__(self, "xdg", xdg)
 
 
-@dataclass(frozen=True)
-class OperatingSystem(metaclass=OperatingSystemMeta):
-    name: str
-    unix_like: bool = False
-    xdg: bool = False
-
-
-class OS(EnumType, OperatingSystem):
+class OS(OperatingSystem, Enum):
     ANDROID: Final = OperatingSystem("Android")
     FREEBSD: Final = OperatingSystem("FreeBSD", unix_like=True)
     iOS: Final = OperatingSystem("iOS")
@@ -47,7 +64,7 @@ class OS(EnumType, OperatingSystem):
     WINDOWS: Final = OperatingSystem("Windows")
 
 
-def determine_os() -> OperatingSystem:
+def determine_os() -> OS:
     try:
         from sys import getandroidapilevel  # fmt: skip # type: ignore
         return OS.ANDROID
