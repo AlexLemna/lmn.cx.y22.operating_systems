@@ -37,14 +37,18 @@ class OperatingSystem:
         unix_like: bool = False,
         xdg: bool = False,
     ) -> None:
-        # if "name_or_os" is a string, use it as the name
+        # if we're being initialized with an argument that is
+        # already an OperatingSystem, then we should just make
+        # ourselves identical to it. After all, int(int(x))
+        # should be the same as int(x).
         if isinstance(name_or_os, OperatingSystem):
             _os = name_or_os
             object.__setattr__(self, "os_name", _os.os_name)
             object.__setattr__(self, "unix_like", _os.unix_like)
             object.__setattr__(self, "xdg", _os.xdg)
 
-        # Otherwise, assume it's a string
+        # Otherwise, we can assume the first argument we're
+        # being initialized with is a string.
         else:
             os_name = name_or_os
             object.__setattr__(self, "os_name", os_name)
