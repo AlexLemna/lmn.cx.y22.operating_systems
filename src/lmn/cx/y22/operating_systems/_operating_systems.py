@@ -57,9 +57,9 @@ def determine_os() -> OperatingSystem:
     if sys.platform.startswith("freebsd"):
         return OS.FREEBSD
 
+    # requires Python 3.13
+    #   see: https://peps.python.org/pep-0730/#platform-identification
     if sys.platform == "ios":
-        # requires Python 3.13
-        #   see: https://peps.python.org/pep-0730/#platform-identification
         return OS.iOS
 
     if sys.platform == "linux":
