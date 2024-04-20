@@ -1,7 +1,14 @@
 # SPDX-FileCopyrightText: 2024 Alex Lemna
-#
 # SPDX-License-Identifier: 0BSD OR MIT OR Apache-2.0
-
+#
+# This source code is available to you under your choice of any
+# of the following licenses:
+#   - The BSD Zero Clause License (or `0BSD`)
+#   - The MIT License (or `MIT`)
+#   - The Apache License 2.0 (or `Apache-2.0`)
+# For more information, see the COPYING file or the LICENSES
+# directory at the root of this repository.
+#
 
 import importlib.metadata
 from dataclasses import dataclass
