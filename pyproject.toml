@@ -72,4 +72,9 @@ allow-unsafe = true
 generate-hashes = true
 resolver = "backtracking"
 
+[tool.setuptools]
+# For more on including license files with package distributions,
+#   see: https://stackoverflow.com/q/75634466
+license-files = ["LICENSES/*", "COPYING*", "NOTICE*", "AUTHORS*"]
+
 [tool.setuptools_scm]
