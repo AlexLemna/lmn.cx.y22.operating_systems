@@ -10,7 +10,7 @@ file are:
     SPDX-FileCopyrightText: 2024 Alex Lemna
     SPDX-License-Identifier: CC0-1.0
 
-For all other files in this project, the SPDX headers will generally
+For all other significant files in this project, the SPDX headers will
 be in the first lines of the file. Any exceptions to this rule will
 have their copyright and licensing information stored in one of the
 alternate methods discussed at <https://reuse.software/spec/>, i.e.,
@@ -30,3 +30,6 @@ tags to indicate that section's copyrights and licensing.
 
 You can review the full text of any license relevant to any of the
 contents of this project in the LICENSES directory.
+
+You can also review an informal explanation of this software's 
+licensing options in the COPYING file.
