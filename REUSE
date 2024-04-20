@@ -4,7 +4,7 @@ tracked using the REUSE Specification. For more information on this
 standard, see <https://reuse.software/spec/>.
 
 For most files, this means we keep track of copyright and licensing
-using SPDX headers. For example, the SPDX headers for this COPYING
+using SPDX headers. For example, the SPDX headers for this REUSE
 file are:
 
     SPDX-FileCopyrightText: 2024 Alex Lemna
