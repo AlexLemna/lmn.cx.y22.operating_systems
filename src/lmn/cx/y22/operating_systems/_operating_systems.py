@@ -13,7 +13,7 @@
 import importlib.metadata
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, Final
+from typing import Final
 
 __all__ = ["determine_os", "OperatingSystem", "OS"]
 try:
