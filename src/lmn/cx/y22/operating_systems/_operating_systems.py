@@ -24,6 +24,13 @@ except importlib.metadata.PackageNotFoundError:
 
 @dataclass(frozen=True, init=False)
 class OperatingSystem:
+    """A dataclass representing an operating system. Its properties:
+    - os_name (str): The name of the operating system.
+    - unix_like (bool): Whether or not the operating system is 'Unix-like',
+    in my arbitrary opinion.
+    - xdg (bool): Whether or not an application running on this operating
+    system should follow the XDG Base Directory Specification."""
+
     os_name: str
     unix_like: bool
     xdg: bool
@@ -76,6 +83,10 @@ class OS(OperatingSystem, Enum):
 
 
 def determine_os() -> OS:
+    """Determines the operating system this script is running on.
+    Returns a value in the `OS` enum.
+
+    In order to return `OS.iOS`, requires Python 3.13 or higher."""
     # fmt: off
     try:
         from sys import getandroidapilevel  # type: ignore
